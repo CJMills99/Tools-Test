@@ -1,0 +1,975 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools Test</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background-color: #4caf50;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .options button {
+            display: block;
+            margin: 5px 0;
+            padding: 10px 15px;
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 4px;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1em;
+        }
+        .options button:hover {
+            background-color: #e0e0e0;
+        }
+        .options button.correct {
+            background-color: #4caf50;
+            color: white;
+        }
+        .options button.wrong {
+            background-color: #f44336;
+            color: white;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+    <script>
+        let totalQuestions = 53;
+        let correctAnswers = 0;
+
+        function checkAnswer(button, correctAnswer) {
+            const feedback = button.parentElement.nextElementSibling;
+            if (button.textContent === correctAnswer) {
+                button.classList.add('correct');
+                feedback.textContent = "Correct!";
+                feedback.style.color = "#4caf50";
+                correctAnswers++;
+            } else {
+                button.classList.add('wrong');
+                feedback.textContent = `Wrong! The correct answer is: ${correctAnswer}`;
+                feedback.style.color = "#f44336";
+            }
+            // Disable all buttons after selecting
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+
+            // Check if all questions have been answered
+            if (document.querySelectorAll('button:not([disabled])').length === 0) {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const resultDiv = document.getElementById('result');
+            const score = Math.round((correctAnswers / totalQuestions) * 100);
+            resultDiv.textContent = `You scored ${score}% (${correctAnswers} out of ${totalQuestions})`;
+        }
+    </script>
+</head>
+<body>
+    <header>Tools Test</header>
+    <div class="container">
+
+    <div class="question">
+        <h3>Question 1: The safest way to use a wrench is to:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Pull on it with a steady pressure')">Pull on it with a steady pressure</button>
+        
+            <button onclick="checkAnswer(this, 'Pull on it with a steady pressure')">Push it away from your body</button>
+        
+            <button onclick="checkAnswer(this, 'Pull on it with a steady pressure')">Tap on it to get it started</button>
+        
+            <button onclick="checkAnswer(this, 'Pull on it with a steady pressure')">Put a pipe handle on it for extra leverage</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 2: What are the two main components to consider when making a leak-free grooved joint?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Coupling Gasket and Coupling Housing')">Coupling Housing and Bolts</button>
+        
+            <button onclick="checkAnswer(this, 'Coupling Gasket and Coupling Housing')">Coupling Gasket and Coupling Housing</button>
+        
+            <button onclick="checkAnswer(this, 'Coupling Gasket and Coupling Housing')">Coupling Gasket and Bolts</button>
+        
+            <button onclick="checkAnswer(this, 'Coupling Gasket and Coupling Housing')">Coupling Gasket and Grooved Pipe</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 3: What might happen if sharp outer edges are not removed from the pipe when installing grip-style fittings?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'The gasket will sustain damage')">The pipe will not fit into the fitting</button>
+        
+            <button onclick="checkAnswer(this, 'The gasket will sustain damage')">The gasket will sustain damage</button>
+        
+            <button onclick="checkAnswer(this, 'The gasket will sustain damage')">The fitting will get scraped</button>
+        
+            <button onclick="checkAnswer(this, 'The gasket will sustain damage')">The fitting will not grip the pipe properly</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 4: What is the minimum pipe schedule that can be used for cut grooving?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '40')">10</button>
+        
+            <button onclick="checkAnswer(this, '40')">20</button>
+        
+            <button onclick="checkAnswer(this, '40')">30</button>
+        
+            <button onclick="checkAnswer(this, '40')">40</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 5: Enclosed ratchet drop head threaders use what type of die to cut an American standard pipe thread:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Full Width')">Flush Cut</button>
+        
+            <button onclick="checkAnswer(this, 'Full Width')">Full Cut</button>
+        
+            <button onclick="checkAnswer(this, 'Full Width')">Full Width</button>
+        
+            <button onclick="checkAnswer(this, 'Full Width')">Receding Width</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 6: Which fitting holds the pipe ends in place with metal grip plates?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Victaulic Fit')">Socket Style</button>
+        
+            <button onclick="checkAnswer(this, 'Victaulic Fit')">Victaulic Fit</button>
+        
+            <button onclick="checkAnswer(this, 'Victaulic Fit')">Round-A-Bout</button>
+        
+            <button onclick="checkAnswer(this, 'Victaulic Fit')">Groove</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 7: A reducer that has the center lines of the ends offset to each other is:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Offset Reducer')">Offset Reducer</button>
+        
+            <button onclick="checkAnswer(this, 'Offset Reducer')">Concentric Reducer</button>
+        
+            <button onclick="checkAnswer(this, 'Offset Reducer')">Eccentric Reducer</button>
+        
+            <button onclick="checkAnswer(this, 'Offset Reducer')">Fitting Bushing</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 8: When ordering steel pipe from a local supplier, which of the following sizes would be correct to purchase?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 2, 2.5')">1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 2, 2.5</button>
+        
+            <button onclick="checkAnswer(this, '1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 2, 2.5')">1/8, 3/8, 1/2, 3/4, 7/8, 1, 1.25, 1.50, 2, 2.5</button>
+        
+            <button onclick="checkAnswer(this, '1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 2, 2.5')">1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 1.75, 2, 2.5</button>
+        
+            <button onclick="checkAnswer(this, '1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 2, 2.5')">1/8, 3/8, 1/2, 3/4, 1, 1.25, 1.50, 1.75, 2, 2.5, 2.75</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 9: What is the proper way to position the coupling gasket on the end of the pipe?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'With no part overhanging the end of the pipe')">With no part overhanging the end of the pipe</button>
+        
+            <button onclick="checkAnswer(this, 'With no part overhanging the end of the pipe')">With the gasket only halfway on the pipe</button>
+        
+            <button onclick="checkAnswer(this, 'With no part overhanging the end of the pipe')">With the gasket overhanging the end of the pipe</button>
+        
+            <button onclick="checkAnswer(this, 'With no part overhanging the end of the pipe')">With the gasket pushed entirely over the groove</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 10: With reference to steel pipe, NPS refers to:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Nominal Pipe Size')">National Pipe Size</button>
+        
+            <button onclick="checkAnswer(this, 'Nominal Pipe Size')">National Pipe Standards</button>
+        
+            <button onclick="checkAnswer(this, 'Nominal Pipe Size')">Nominal Pipe Size</button>
+        
+            <button onclick="checkAnswer(this, 'Nominal Pipe Size')">Nominal Pipe Standards</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 11: Which tool should never be used for fabricating pipe on a power vise?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Spiral Reamer')">Hand Pipe Cutter</button>
+        
+            <button onclick="checkAnswer(this, 'Spiral Reamer')">Groover</button>
+        
+            <button onclick="checkAnswer(this, 'Spiral Reamer')">Straight Fluted Reamer</button>
+        
+            <button onclick="checkAnswer(this, 'Spiral Reamer')">Spiral Reamer</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 12: Which organization recognizes the groove system for gaskets that are designed for potable water?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'American Water Works Association')">National Fire Protection Association</button>
+        
+            <button onclick="checkAnswer(this, 'American Water Works Association')">American Water Works Association</button>
+        
+            <button onclick="checkAnswer(this, 'American Water Works Association')">American Society of Mechanical Engineers</button>
+        
+            <button onclick="checkAnswer(this, 'American Water Works Association')">American National Standards Institute</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 13: Which type of pipe wrench is best designed for loosening frozen pipe joints?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Compound Leverage')">End Offset</button>
+        
+            <button onclick="checkAnswer(this, 'Compound Leverage')">Multiple Leverage</button>
+        
+            <button onclick="checkAnswer(this, 'Compound Leverage')">Triple Duty Leverage</button>
+        
+            <button onclick="checkAnswer(this, 'Compound Leverage')">Compound Leverage</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 14: What grade of gasket is designed for sprinkler services only?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Grade E (Type A)')">Grade E</button>
+        
+            <button onclick="checkAnswer(this, 'Grade E (Type A)')">Grade E (Type A)</button>
+        
+            <button onclick="checkAnswer(this, 'Grade E (Type A)')">Grade L</button>
+        
+            <button onclick="checkAnswer(this, 'Grade E (Type A)')">Grade L (Type A)</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 15: Why are narrow gaskets preferred over wide ones?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak proof tightness')">They do not need to be tightened with an even criss-cross pattern</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak proof tightness')">It is easier to place them between the flanges</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak proof tightness')">Excessive bolt torque load will never crush the gasket</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak proof tightness')">They need less bolt torque load for leak proof tightness</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 16: A fitting used to join two dissimilar piping materials so that galvanic corrosion will not occur is termed:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Dielectric Union')">Ground Joint Union</button>
+        
+            <button onclick="checkAnswer(this, 'Dielectric Union')">Galvanic Union</button>
+        
+            <button onclick="checkAnswer(this, 'Dielectric Union')">Insulating Union</button>
+        
+            <button onclick="checkAnswer(this, 'Dielectric Union')">Dielectric Union</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 17: What is the proper procedure to fabricate grooved piping systems?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Measure, mark, cut pipe, groove, ream, file, check groove depth')">Cut pipe, measure, mark, ream, check groove depth, file, groove</button>
+        
+            <button onclick="checkAnswer(this, 'Measure, mark, cut pipe, groove, ream, file, check groove depth')">Measure, mark, cut pipe, groove, ream, file, check groove depth</button>
+        
+            <button onclick="checkAnswer(this, 'Measure, mark, cut pipe, groove, ream, file, check groove depth')">Groove, check groove depth, file, cut pipe, measure, ream, mark</button>
+        
+            <button onclick="checkAnswer(this, 'Measure, mark, cut pipe, groove, ream, file, check groove depth')">Ream, groove, measure, file, mark, cut pipe, check groove depth</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 18: Blind flanges have no center hole and are used to:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Shutting off or blanking off piping')">Areas where welding could be hazardous</button>
+        
+            <button onclick="checkAnswer(this, 'Shutting off or blanking off piping')">Pressure vessel or tank outlets</button>
+        
+            <button onclick="checkAnswer(this, 'Shutting off or blanking off piping')">Shutting off or blanking off piping</button>
+        
+            <button onclick="checkAnswer(this, 'Shutting off or blanking off piping')">Low pressure sprinkler systems</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 19: The correct number of NPT pipe threads to be cut on 2\" schedule 40 carbon steel pipe would be which of the following:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '11 1/2 TPI')">8 TPI</button>
+        
+            <button onclick="checkAnswer(this, '11 1/2 TPI')">10 TPI</button>
+        
+            <button onclick="checkAnswer(this, '11 1/2 TPI')">11 TPI</button>
+        
+            <button onclick="checkAnswer(this, '11 1/2 TPI')">11 1/2 TPI</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 20: What occurs when, as the pressure increases, the length of the line extends due to the play in the couplings?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Expansion Ratio')">Expansion Ratio</button>
+        
+            <button onclick="checkAnswer(this, 'Expansion Ratio')">Compression</button>
+        
+            <button onclick="checkAnswer(this, 'Expansion Ratio')">Surge</button>
+        
+            <button onclick="checkAnswer(this, 'Expansion Ratio')">Slip</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 21: Which type of flange is suitable both for smaller pipe sizes and where welding could be hazardous?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Socket Weld</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Screwed/Threaded</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Lap Joint/Van Stone</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Slip On</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 22: Which type of flange is suitable both for smaller pipe sizes and where welding could be hazardous?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Socket Weld</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Screwed/Threaded</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Lap Joint/Van Stone</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Slip On</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 23: What is the most common material used for groove fittings?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Cast Ductile Iron')">Malleable Iron</button>
+        
+            <button onclick="checkAnswer(this, 'Cast Ductile Iron')">Galvanized Steel</button>
+        
+            <button onclick="checkAnswer(this, 'Cast Ductile Iron')">Stainless Steel</button>
+        
+            <button onclick="checkAnswer(this, 'Cast Ductile Iron')">Cast Ductile Iron</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 24: Grooved and non-grooved fittings are specified by their pressure ratings. Gaskets are rated on their:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Temperature ratings')">Pressure ratings</button>
+        
+            <button onclick="checkAnswer(this, 'Temperature ratings')">Temperature ratings</button>
+        
+            <button onclick="checkAnswer(this, 'Temperature ratings')">Temperature and pressure ratings</button>
+        
+            <button onclick="checkAnswer(this, 'Temperature ratings')">Depends on the class style of the fittings</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 25: How many bolts are needed to install a 4\" flange and what are their sizes?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Eight bolts at 3/4\" (19 mm)')">Four bolts at 1/4\" (6 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Eight bolts at 3/4\" (19 mm)')">Six bolts at 1/2\" (12 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Eight bolts at 3/4\" (19 mm)')">Eight bolts at 3/4\" (19 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Eight bolts at 3/4\" (19 mm)')">Twelve bolts at 3/4\" (19 mm)</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 26: During the pipe end inspection, you should be looking for:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'All of the above')">Indents</button>
+        
+            <button onclick="checkAnswer(this, 'All of the above')">Loose Paint</button>
+        
+            <button onclick="checkAnswer(this, 'All of the above')">Cracks</button>
+        
+            <button onclick="checkAnswer(this, 'All of the above')">All of the above</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 27: When roll grooving, what flow characteristics have been determined if the indentation inside the pipe has been tested?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'The pressure loss in the system is insignificant')">The pressure loss in the system is insignificant</button>
+        
+            <button onclick="checkAnswer(this, 'The pressure loss in the system is insignificant')">The turbulent flow in the system has increased significantly</button>
+        
+            <button onclick="checkAnswer(this, 'The pressure loss in the system is insignificant')">The pressure loss in the system has increased significantly</button>
+        
+            <button onclick="checkAnswer(this, 'The pressure loss in the system is insignificant')">The hydraulic calculations have increased significantly</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 28: Identify the following end finishes on the pipes below:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Threaded and Coupled')">Plain</button>
+        
+            <button onclick="checkAnswer(this, 'Threaded and Coupled')">Threaded</button>
+        
+            <button onclick="checkAnswer(this, 'Threaded and Coupled')">Threaded and Coupled</button>
+        
+            <button onclick="checkAnswer(this, 'Threaded and Coupled')">Beveled</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 29: Which grooving method allows for thinner-walled pipe to be used in the sprinkler system?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Roll')">Cut</button>
+        
+            <button onclick="checkAnswer(this, 'Roll')">Roll</button>
+        
+            <button onclick="checkAnswer(this, 'Roll')">Press</button>
+        
+            <button onclick="checkAnswer(this, 'Roll')">Radius</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 30: The approximate % of carbon content used to manufacture mild steel pipe is:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '0.0% to 0.2%')">0.0% to 0.2%</button>
+        
+            <button onclick="checkAnswer(this, '0.0% to 0.2%')">1.8% to 2.0%</button>
+        
+            <button onclick="checkAnswer(this, '0.0% to 0.2%')">4.8% to 5.0%</button>
+        
+            <button onclick="checkAnswer(this, '0.0% to 0.2%')">10% to 20%</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 31: Which fitting holds the pipe and fitting in place with hex head bolts that are tightened to a full flush position?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Socket Style')">Victaulic Fit</button>
+        
+            <button onclick="checkAnswer(this, 'Socket Style')">Socket Style</button>
+        
+            <button onclick="checkAnswer(this, 'Socket Style')">Round-A-Bout</button>
+        
+            <button onclick="checkAnswer(this, 'Socket Style')">Groove</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 32: At what pipe size do flanges increase from four bolts to eight bolts?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Greater than 2\" (50 mm) and less than 10\" (250 mm)')">2\" (50 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Greater than 2\" (50 mm) and less than 10\" (250 mm)')">Greater than 2\" (50 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Greater than 2\" (50 mm) and less than 10\" (250 mm)')">Greater than 2\" (50 mm) and less than 10\" (250 mm)</button>
+        
+            <button onclick="checkAnswer(this, 'Greater than 2\" (50 mm) and less than 10\" (250 mm)')">Greater than 4\" (100 mm)</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 33: In which type of sprinkler system would you use flush seal gaskets?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Wet with an Alarm Valve')">Dry</button>
+        
+            <button onclick="checkAnswer(this, 'Wet with an Alarm Valve')">Wet with an Alarm Valve</button>
+        
+            <button onclick="checkAnswer(this, 'Wet with an Alarm Valve')">Wet with a Flow Switch</button>
+        
+            <button onclick="checkAnswer(this, 'Wet with an Alarm Valve')">Suppression</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 34: List the two different classifications of threaded malleable fittings:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '150 and 300')">150 and 300</button>
+        
+            <button onclick="checkAnswer(this, '150 and 300')">125 and 250</button>
+        
+            <button onclick="checkAnswer(this, '150 and 300')">100 and 200</button>
+        
+            <button onclick="checkAnswer(this, '150 and 300')">175 and 350</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 35: Identify the following end finishes on the pipes below:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Grooved')">Plain</button>
+        
+            <button onclick="checkAnswer(this, 'Grooved')">Threaded</button>
+        
+            <button onclick="checkAnswer(this, 'Grooved')">Threaded and Coupled</button>
+        
+            <button onclick="checkAnswer(this, 'Grooved')">Grooved</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 36: What are gaskets marked with in order to identify the fluids that they can handle?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Coloured Stripe')">Raised Writing</button>
+        
+            <button onclick="checkAnswer(this, 'Coloured Stripe')">Indented Lettering</button>
+        
+            <button onclick="checkAnswer(this, 'Coloured Stripe')">Coloured Stripe</button>
+        
+            <button onclick="checkAnswer(this, 'Coloured Stripe')">Coloured Writing</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 37: When gripping a pipe with a pipe wrench, the wrench should be adjusted so that the pipe is:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Separated from the hook jaw slightly')">Against the hook jaw</button>
+        
+            <button onclick="checkAnswer(this, 'Separated from the hook jaw slightly')">Separated from the hook jaw slightly</button>
+        
+            <button onclick="checkAnswer(this, 'Separated from the hook jaw slightly')">Separated from the heel jaw slightly</button>
+        
+            <button onclick="checkAnswer(this, 'Separated from the hook jaw slightly')">Against the outer tips of the jaws</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 38: Which pipe cutting tools are recommended for making a square cut?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Mechanical Pipe Cutter or Hand Pipe Cutters')">Mechanical Pipe Cutter or Hand Pipe Cutters</button>
+        
+            <button onclick="checkAnswer(this, 'Mechanical Pipe Cutter or Hand Pipe Cutters')">Mechanical Pipe Cutter or Chop Saw</button>
+        
+            <button onclick="checkAnswer(this, 'Mechanical Pipe Cutter or Hand Pipe Cutters')">Chop Saw or Hand Pipe Cutters</button>
+        
+            <button onclick="checkAnswer(this, 'Mechanical Pipe Cutter or Hand Pipe Cutters')">Hand Pipe Cutters or Hacksaw</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 39: How often should grease fittings be greased with a quality bearing grease in order to keep dirt out of bearings?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Every eight hours of operation')">Every four hours of operation</button>
+        
+            <button onclick="checkAnswer(this, 'Every eight hours of operation')">Every six hours of operation</button>
+        
+            <button onclick="checkAnswer(this, 'Every eight hours of operation')">Every eight hours of operation</button>
+        
+            <button onclick="checkAnswer(this, 'Every eight hours of operation')">Every twelve hours of operation</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 40: Which type of flange is suitable both for smaller pipe sizes and where welding could be hazardous?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Socket Weld</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Screwed/Threaded</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Lap Joint/Van Stone</button>
+        
+            <button onclick="checkAnswer(this, 'Screwed/Threaded')">Slip On</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 41: The reason for using a three-wheel cutter instead of a one-wheel cutter is:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'That it can be used in a limited space')">To help assure that the ridge at the end of the pipe is rolled down smooth</button>
+        
+            <button onclick="checkAnswer(this, 'That it can be used in a limited space')">Because it tracks more easily</button>
+        
+            <button onclick="checkAnswer(this, 'That it can be used in a limited space')">That it can be used in a limited space</button>
+        
+            <button onclick="checkAnswer(this, 'That it can be used in a limited space')">That it has to be swung completely around the pipe</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 42: Why are narrow gaskets preferred over wide ones?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak-proof tightness')">They do not need to be tightened with an even criss-cross pattern</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak-proof tightness')">It is easier to place them between the flanges</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak-proof tightness')">Excessive bolt torque load will never crush the gasket</button>
+        
+            <button onclick="checkAnswer(this, 'They need less bolt torque load for leak-proof tightness')">They need less bolt torque load for leak-proof tightness</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 43: What does the abbreviation NFPA stand for?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'National Fire Protection Association')">Newfoundland Fire Prevention Academy</button>
+        
+            <button onclick="checkAnswer(this, 'National Fire Protection Association')">National Fire Protection of America</button>
+        
+            <button onclick="checkAnswer(this, 'National Fire Protection Association')">Newfoundland Fire Provincial Association</button>
+        
+            <button onclick="checkAnswer(this, 'National Fire Protection Association')">National Fire Protection Association</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 44: What is the distinguishing characteristic of full-faced or full flange gaskets?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'It extends across the entire surface of a flat face flange')">It extends across the entire surface of a flat face flange</button>
+        
+            <button onclick="checkAnswer(this, 'It extends across the entire surface of a flat face flange')">It is a narrow gasket that is used on a flat face flange</button>
+        
+            <button onclick="checkAnswer(this, 'It extends across the entire surface of a flat face flange')">It extends across half the surface of a flat face flange</button>
+        
+            <button onclick="checkAnswer(this, 'It extends across the entire surface of a flat face flange')">It extends across the entire surface of a blind flange</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 45: Referring to the following diagram, identify 5 parts of a tapered pipe thread:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '#1 60 Degree Angle')">#1 60 Degree Angle</button>
+        
+            <button onclick="checkAnswer(this, '#1 60 Degree Angle')">#2 Crest</button>
+        
+            <button onclick="checkAnswer(this, '#1 60 Degree Angle')">#3 Pitch</button>
+        
+            <button onclick="checkAnswer(this, '#1 60 Degree Angle')">#4 Root</button>
+        
+            <button onclick="checkAnswer(this, '#1 60 Degree Angle')">#5 60 Degree Angle</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 46: A spiral reamer should not be used with:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Power Drive')">Tripod Vise</button>
+        
+            <button onclick="checkAnswer(this, 'Power Drive')">Power Vise</button>
+        
+            <button onclick="checkAnswer(this, 'Power Drive')">Bench Drive</button>
+        
+            <button onclick="checkAnswer(this, 'Power Drive')">Power Drive</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 47: What is the maximum working pressure for Victaulic fit fittings?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '175 psi (1200 kPa)')">750 psi (5100 kPa)</button>
+        
+            <button onclick="checkAnswer(this, '175 psi (1200 kPa)')">350 psi (2400 kPa)</button>
+        
+            <button onclick="checkAnswer(this, '175 psi (1200 kPa)')">250 psi (1725 kPa)</button>
+        
+            <button onclick="checkAnswer(this, '175 psi (1200 kPa)')">175 psi (1200 kPa)</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 48: When threading a pipe, the pipe should be reamed:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Before threading is started')">Before threading is started</button>
+        
+            <button onclick="checkAnswer(this, 'Before threading is started')">After threading is started</button>
+        
+            <button onclick="checkAnswer(this, 'Before threading is started')">Not required</button>
+        
+            <button onclick="checkAnswer(this, 'Before threading is started')">Only required on oil systems</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 49: Slip-on flanges are generally used in 150# and 300# applications:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'True')">True</button>
+        
+            <button onclick="checkAnswer(this, 'True')">False</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 50: Galvanized pipe has a bonded coating of:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Zinc')">Paint</button>
+        
+            <button onclick="checkAnswer(this, 'Zinc')">Yellow Jacket</button>
+        
+            <button onclick="checkAnswer(this, 'Zinc')">Pickle</button>
+        
+            <button onclick="checkAnswer(this, 'Zinc')">Zinc</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 51: How do you prevent internal burrs from restricting the bore of the pipe and causing excessive pressure loss?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Ream the Pipe')">Groove the Pipe</button>
+        
+            <button onclick="checkAnswer(this, 'Ream the Pipe')">Re-cut the Pipe</button>
+        
+            <button onclick="checkAnswer(this, 'Ream the Pipe')">Ream the Pipe</button>
+        
+            <button onclick="checkAnswer(this, 'Ream the Pipe')">Bevel the Pipe</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 52: What is the minimum pipe schedule that can be used for cut grooving?</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, '40')">10</button>
+        
+            <button onclick="checkAnswer(this, '40')">20</button>
+        
+            <button onclick="checkAnswer(this, '40')">30</button>
+        
+            <button onclick="checkAnswer(this, '40')">40</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+    <div class="question">
+        <h3>Question 53: Identify the following tool below:</h3>
+        <div class="options">
+    
+            <button onclick="checkAnswer(this, 'Nipple Chuck')">Nipple Chuck</button>
+        
+            <button onclick="checkAnswer(this, 'Nipple Chuck')">Threader Adapter</button>
+        
+            <button onclick="checkAnswer(this, 'Nipple Chuck')">Die Set</button>
+        
+            <button onclick="checkAnswer(this, 'Nipple Chuck')">Pipe Reamer</button>
+        
+        </div>
+        <div class="feedback"></div>
+    </div>
+    
+        <div id="result" class="result"></div>
+    </div>
+    <footer>&copy; 2024 Tools Test. All Rights Reserved.</footer>
+</body>
+</html>
